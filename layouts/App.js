@@ -23,22 +23,9 @@ function AppLayout({ children, currentUser, title }) {
         </Nav>
       </Navbar>
       <Container fluid="sm">
-        <Row>
-          {typeof title === "string" && <h2>{title}</h2>}
-          {typeof title === "object" && { title }}
-        </Row>
-        <Row>{children}</Row>
-        <Row>
-          <footer>
-            <a
-              href="https://zeit.co?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Powered by <img src="/zeit.svg" alt="ZEIT Logo" />
-            </a>
-          </footer>
-        </Row>
+        {typeof title === "string" && <h2>{title}</h2>}
+        {typeof title === "object" && { title }}
+        {children}
       </Container>
     </>
   );
