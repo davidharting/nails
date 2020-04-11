@@ -1,6 +1,7 @@
 import React from "react";
 
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 import Layout from "../layouts/App";
 
@@ -13,7 +14,12 @@ function Home() {
         however, and very hard to guess.
       </p>
 
-      <Button variant="primary">Create todo list</Button>
+      <Form action="/api/lists" method="post">
+        <Form.Control name="redirectTo" type="hidden" value="/lists/[id]" />
+        <Button variant="primary" type="submit">
+          Create todo list
+        </Button>
+      </Form>
     </Layout>
   );
 }
