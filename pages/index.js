@@ -1,7 +1,6 @@
 import Layout from "../layouts/Landing";
 
 import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
 
 function Home() {
   return (
@@ -11,7 +10,7 @@ function Home() {
         I am exploring Next.js 9.3 and attempting to create a Rails-like
         development experience.
       </p>
-      <Button variant="primary" href="/home">
+      <Button className="w-100" variant="primary" href="/home">
         Get started
       </Button>
     </Layout>
