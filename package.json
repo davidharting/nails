@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "migrate:gen": "prisma migrate save --name init --experimental",
+    "migrate:up": "prisma migrate up --experimental",
     "start": "next start"
   },
   "dependencies": {
@@ -13,5 +15,8 @@
     "react": "16.13.1",
     "react-bootstrap": "^1.0.0",
     "react-dom": "16.13.1"
+  },
+  "devDependencies": {
+    "@prisma/cli": "^2.0.0-beta.2"
   }
 }
