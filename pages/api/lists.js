@@ -1,10 +1,20 @@
 // Figure out where came from
 // Figure out how to redirect without .redirect available
 
+const prisma = require("../../prisma");
 const handleForm = require("../../handlers/form");
 
-function handle(req, res) {
+/*
+ * I like that handleForm does not wrap the entire thing and take a callback.
+ * However, the issue is that top-level 500 errors from this application code
+ * Are not caught in that. That is okay, but I would prefer to not have to wrap all my endpoints in
+ * a manual try catch and handle them individually.
+ * Callback may end up being the way to go I suppose :/
+ */
+
+async function handle(req, res) {
   const done = handleForm(req, res);
+  const list = await prisma.list.create({ data: {} });
   return done(null, "/home");
 }
 

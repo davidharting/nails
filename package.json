@@ -5,11 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "migrate:gen": "prisma migrate save --name init --experimental",
-    "migrate:up": "prisma migrate up --experimental",
+    "prisma:migrate:gen": "prisma migrate save --name init --experimental",
+    "prisma:migrate:up": "prisma migrate up --experimental",
+    "prisma:client:gen": "prisma generate",
     "start": "next start"
   },
   "dependencies": {
+    "@prisma/client": "^2.0.0-beta.2",
     "bootstrap": "^4.4.1",
     "next": "9.3.4",
     "react": "16.13.1",
