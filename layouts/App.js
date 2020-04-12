@@ -7,7 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Row from "react-bootstrap/Row";
 // import Col from "react-bootstrap/Col";
 
-function AppLayout({ children, currentUser, title }) {
+function AppLayout({ children, title }) {
   return (
     <>
       <Head>

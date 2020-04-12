@@ -8,6 +8,7 @@
     "prisma:migrate:gen": "prisma migrate save --name init --experimental",
     "prisma:migrate:up": "prisma migrate up --experimental",
     "prisma:client:gen": "prisma generate",
+    "prisma:refresh": "npm run prisma:migrate:gen && npm run prisma:migrate:up && npm run prisma:client:gen",
     "start": "next start"
   },
   "dependencies": {
@@ -19,6 +20,9 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@prisma/cli": "^2.0.0-beta.2"
+    "@prisma/cli": "^2.0.0-beta.2",
+    "@types/node": "^13.11.1",
+    "babel-plugin-root-import": "^6.5.0",
+    "typescript": "^3.8.3"
   }
 }
