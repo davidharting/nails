@@ -3,6 +3,7 @@ import React from "react";
 import prisma from "../../prisma";
 
 import Layout from "../../layouts/App";
+import ShowList from "../../views/list/show";
 
 // TODO: Lists should really have a name
 
@@ -21,7 +22,7 @@ function List({ list }) {
 
   return (
     <Layout title="List">
-      <p>List content will go here.</p>
+      <ShowList list={list} />
     </Layout>
   );
 }
@@ -35,8 +36,6 @@ export async function getServerSideProps(ctx) {
     include: { tasks: true },
     where: { secret },
   });
-
-  // TODO: Handle not found
 
   return { props: { list: lists[0] || null } };
 }
