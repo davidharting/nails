@@ -1,23 +1,22 @@
 import React from "react";
 
+import TaskForm from "../task/form";
 import ShowTask from "../task/show";
 
 import Container from "react-bootstrap/Container";
-
-// TODO: Add ability to create a task
 
 function ShowList({ list }) {
   if (!list) {
     return null;
   }
 
-  if (!list.tasks || list.tasks.length < 1) {
-    return <p>This list is empty.</p>;
-  }
+  const tasks = list.tasks || [];
 
   return (
     <Container>
-      {list.tasks.map((t) => (
+      <TaskForm />
+      {tasks.length < 1 && <p>This list is empty.</p>}
+      {tasks.map((t) => (
         <ShowTask task={t} />
       ))}
     </Container>
