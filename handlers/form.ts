@@ -2,14 +2,20 @@
 // How to get the errors propagated?
 // I can probably set the errors as query strings and have them parsed by getServerSideProps
 // But that seems somewhat non-standard
-import { NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from "next";
 
-function redirect(res: NextApiResponse, to) {
+function redirect(res: NextApiResponse, to: string) {
   res.writeHead(303, { Location: to });
   return res.end();
 }
 
-function handleForm(req, res) {
+type HandleFormCallback = (error: any, to: string) => void;
+type HandleFormResult = void | HandleFormCallback;
+
+function handleForm(
+  req: NextApiRequest,
+  res: NextApiResponse
+): HandleFormResult {
   try {
     const requesterUrl = req.headers.referer;
 
@@ -17,7 +23,7 @@ function handleForm(req, res) {
       return redirect(res, requesterUrl);
     }
 
-    return (errors, to) => {
+    return (errors: any, to: string) => {
       const Location = errors ? requesterUrl : to;
       res.writeHead(301, { Location });
       return res.end();
@@ -27,4 +33,4 @@ function handleForm(req, res) {
   }
 }
 
-module.exports = handleForm;
+export default handleForm;

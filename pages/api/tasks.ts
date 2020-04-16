@@ -19,9 +19,10 @@ async function handle(req: NextApiRequest, res: NextApiResponse) {
       list: { connect: { id: parseInt(listId, 10) } },
     },
   });
-  console.log("task", task);
 
-  return done(null, ListHelper.path(list));
+  if (done) {
+    return done(null, ListHelper.path(list));
+  }
 }
 
 export default handle;

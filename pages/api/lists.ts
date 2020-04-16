@@ -16,7 +16,9 @@ async function handle(req, res) {
   const done = handleForm(req, res);
   const list = await prisma.list.create({ data: {} });
   console.log("list", list);
-  return done(null, ListHelper.path(list));
+  if (done) {
+    return done(null, ListHelper.path(list));
+  }
 }
 
 export default handle;
