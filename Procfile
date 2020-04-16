@@ -1,2 +1,2 @@
-release: prisma:migrate:up
+release: yarn prisma:migrate:up
 web: yarn start
