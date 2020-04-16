@@ -1,9 +1,9 @@
 import React from "react";
 
-import prisma from "../../prisma";
+import prisma from "~/prisma";
 
-import Layout from "../../layouts/App";
-import ShowList from "../../views/list/show";
+import Layout from "~/layouts/App";
+import ShowList from "~/views/list/show";
 
 // TODO: Lists should really have a name
 

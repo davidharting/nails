@@ -1,8 +1,8 @@
 // Figure out where came from
 // Figure out how to redirect without .redirect available
 
-import prisma, { ListHelper } from "../../prisma";
-import handleForm from "../../handlers/form";
+import prisma, { ListHelper } from "~/prisma";
+import handleForm from "~/handlers/form";
 
 /*
  * I like that handleForm does not wrap the entire thing and take a callback.
@@ -15,7 +15,6 @@ import handleForm from "../../handlers/form";
 async function handle(req, res) {
   const done = handleForm(req, res);
   const list = await prisma.list.create({ data: {} });
-  console.log("list", list);
   if (done) {
     return done(null, ListHelper.path(list));
   }

@@ -2,8 +2,8 @@
 // Figure out how to redirect without .redirect available
 import { NextApiRequest, NextApiResponse } from "next";
 
-import prisma, { ListHelper } from "../../prisma";
-import handleForm from "../../handlers/form";
+import prisma, { ListHelper } from "~/prisma";
+import handleForm from "~/handlers/form";
 
 // The more I think about it, the more I want to pass my function behavior into the handleForm
 // "middleware" so that it can catch _all_ errors

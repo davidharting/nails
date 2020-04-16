@@ -1,7 +1,7 @@
 import React from "react";
 
-import TaskForm from "../task/form";
-import ShowTask from "../task/show";
+import TaskForm from "~/views/task/form";
+import ShowTask from "~/views/task/show";
 
 import Container from "react-bootstrap/Container";
 
@@ -17,7 +17,7 @@ function ShowList({ list }) {
       <TaskForm listId={list.id} />
       {tasks.length < 1 && <p>This list is empty.</p>}
       {tasks.map((t) => (
-        <ShowTask task={t} />
+        <ShowTask key={t.id} task={t} />
       ))}
     </Container>
   );

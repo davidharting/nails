@@ -3,7 +3,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-import Layout from "../layouts/App";
+import Layout from "~/layouts/App";
 
 function Home() {
   return (

@@ -1,6 +1,7 @@
-import Layout from "../layouts/Landing";
-
+import React from "react";
 import Button from "react-bootstrap/Button";
+
+import Layout from "~/layouts/Landing";
 
 function Home() {
   return (
