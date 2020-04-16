@@ -3,9 +3,14 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-function TaskForm({}) {
+interface TaskFormProps {
+  listId: number;
+}
+
+function TaskForm({ listId }: TaskFormProps) {
   return (
     <Form action="/api/tasks" method="post">
+      <Form.Control type="hidden" name="listId" value={listId} />
       <Form.Control
         type="text"
         name="description"

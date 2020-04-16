@@ -14,7 +14,7 @@ function ShowList({ list }) {
 
   return (
     <Container>
-      <TaskForm />
+      <TaskForm listId={list.id} />
       {tasks.length < 1 && <p>This list is empty.</p>}
       {tasks.map((t) => (
         <ShowTask task={t} />

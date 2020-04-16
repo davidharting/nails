@@ -2,8 +2,9 @@
 // How to get the errors propagated?
 // I can probably set the errors as query strings and have them parsed by getServerSideProps
 // But that seems somewhat non-standard
+import { NextApiResponse } from "next";
 
-function redirect(res, to) {
+function redirect(res: NextApiResponse, to) {
   res.writeHead(303, { Location: to });
   return res.end();
 }
@@ -16,12 +17,11 @@ function handleForm(req, res) {
       return redirect(res, requesterUrl);
     }
 
-    function done(errors, to) {
+    return (errors, to) => {
       const Location = errors ? requesterUrl : to;
       res.writeHead(301, { Location });
       return res.end();
-    }
-    return done;
+    };
   } catch (err) {
     return redirect(res, "/500");
   }
