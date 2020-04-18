@@ -9,7 +9,7 @@ function redirect(res: NextApiResponse, to: string) {
   return res.end();
 }
 
-type HandleFormCallback = (error: any, to: string) => void;
+type HandleFormCallback = (error: any, to?: string) => void;
 type HandleFormResult = void | HandleFormCallback;
 
 function handleForm(
@@ -24,7 +24,7 @@ function handleForm(
     }
 
     return (errors: any, to: string) => {
-      const Location = errors ? requesterUrl : to;
+      const Location = errors || !to ? requesterUrl : to;
       res.writeHead(301, { Location });
       return res.end();
     };

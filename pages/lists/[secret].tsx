@@ -1,6 +1,6 @@
 import React from "react";
 
-import prisma from "~/prisma";
+import prisma, { ListHelper } from "~/prisma";
 
 import Layout from "~/layouts/App";
 import ShowList from "~/views/list/show";
@@ -37,5 +37,7 @@ export async function getServerSideProps(ctx) {
     where: { secret },
   });
 
-  return { props: { list: lists[0] || null } };
+  const list = lists[0] || null;
+
+  return { props: { list: list ? ListHelper.toProps(list) : null } };
 }

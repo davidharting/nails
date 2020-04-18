@@ -25,6 +25,7 @@ model List {
 model Task {
   id          Int       @default(autoincrement()) @id
   description String
+  // Unfortunately this generates a timestamp without timezone 😕
   completedAt DateTime?
   list        List      @relation(fields: [listId], references: [id])
   listId      Int
