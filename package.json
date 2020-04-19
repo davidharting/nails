@@ -9,7 +9,9 @@
     "prisma:migrate:up": "prisma migrate up --experimental",
     "prisma:client:gen": "prisma generate",
     "prisma:refresh": "npm run prisma:migrate:gen && npm run prisma:migrate:up && npm run prisma:client:gen",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest",
+    "test:ci": "jest --ci"
   },
   "dependencies": {
     "@prisma/client": "^2.0.0-beta.2",
@@ -21,9 +23,15 @@
   },
   "devDependencies": {
     "@prisma/cli": "^2.0.0-beta.2",
+    "@testing-library/jest-dom": "^5.5.0",
+    "@testing-library/react": "^10.0.2",
     "@types/node": "^13.11.1",
     "@types/react": "^16.9.34",
+    "@types/testing-library__jest-dom": "^5.0.3",
+    "@types/testing-library__react": "^10.0.1",
+    "babel-jest": "^25.3.0",
     "babel-plugin-root-import": "^6.5.0",
+    "jest": "^25.3.0",
     "typescript": "^3.8.3"
   }
 }
