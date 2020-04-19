@@ -13,8 +13,11 @@ import TestJob from "./jobs/test";
 const testJob = new TestJob();
 export const addTestJob = testJob.doLater;
 
-// Because are requiring in addTestJob somewhere else
-// we will start working immediately
-// This means we will do work on the web server itself
-// This is not ideal but fine for now
-testJob.work();
+function startWorkers() {
+  testJob.work();
+}
+
+// For now just starting workers in the web server
+// This way I can use the next.js build toolchain for everything
+// This is not ideal but fine for now as long as jobs stay fast?
+startWorkers();

@@ -23,7 +23,7 @@ async function handle(req: NextApiRequest, res: NextApiResponse) {
   });
 
   if (done) {
-    await addTestJob({ hello: "world" });
+    await addTestJob({ greeting: "world" });
     return done(null, ListHelper.path(list));
   }
 }
