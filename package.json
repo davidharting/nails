@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "format:check": "prettier --check .",
+    "lint": "echo \"🔜 Linting coming soon!\"",
     "prisma:migrate:gen": "prisma migrate save --name init --experimental",
     "prisma:migrate:up": "prisma migrate up --experimental",
     "prisma:client:gen": "prisma generate",
@@ -32,6 +34,7 @@
     "babel-jest": "^25.3.0",
     "babel-plugin-root-import": "^6.5.0",
     "jest": "^25.3.0",
+    "prettier": "^2.0.4",
     "typescript": "^3.8.3"
   }
 }
