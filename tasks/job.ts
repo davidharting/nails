@@ -35,7 +35,12 @@ abstract class Job<T> {
   // but allow subclasses to override
 
   constructor(name: string) {
-    this.queue = new Bull(name, "redis://localhost:6379", opts);
+    try {
+      this.queue = new Bull(name, "redis://localhost:6379", opts);
+    } catch (err) {
+      console.log("Unable to establish connection to redis for queue ", name);
+      console.error(err);
+    }
 
     // I think it is bad to start processing
     // We want to explicitly do this when booting up our worker
@@ -45,17 +50,26 @@ abstract class Job<T> {
   /**
    * Adds an item to the queue
    */
-  doLater = (params: T): Promise<any> => {
+  doLater = (params: T): Promise<Job<T>> => {
     // TODO: Probably want to try-catch inside of this and just return an error?
     // That way the caller can ignore this if they want or handle errors if they want
-    return this.queue.add(params);
+    return this.queue.add(params).catch((err) => {
+      console.log("Unable to add item to queue", params);
+      console.error(err);
+      return null;
+    });
   };
 
   /**
    * Starts the worker processing to consume items from the queue
    */
   work = () => {
-    this.queue.process(this.process);
+    try {
+      this.queue.process(this.process);
+    } catch (err) {
+      console.log("Unable to start working");
+      console.error(err);
+    }
   };
 
   /**

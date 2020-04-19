@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "dev": "run-p dev:next dev:redis",
+    "dev:next": "next dev",
     "dev:redis": "docker run -p 6379:6379 redis",
     "prisma:client:gen": "prisma generate",
     "prisma:migrate:gen": "prisma migrate save --name init --experimental",
@@ -27,6 +28,7 @@
     "@types/node": "^13.11.1",
     "@types/react": "^16.9.34",
     "babel-plugin-root-import": "^6.5.0",
+    "npm-run-all": "^4.1.5",
     "typescript": "^3.8.3"
   }
 }
