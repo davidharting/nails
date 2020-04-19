@@ -1,0 +1,21 @@
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
+jobs:
+  hygiene:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: yarn install
+            - run: yarn format:check
+            - run: yarn lint
+            - run: yarn test:ci
+            - run: yarn build
+
+workflows:
+  hygiene:
+    jobs:
+      - hygiene
