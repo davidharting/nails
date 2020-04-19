@@ -3,8 +3,6 @@
 // But we can manually expose for now.
 // Manually exposing does give us better guarantees of type safety I would have to imagine
 
-import Queue from "bull";
-
 import TestJob from "./jobs/test";
 
 // TODO: environment variable
