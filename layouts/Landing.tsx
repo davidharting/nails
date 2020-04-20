@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactNode } from "react";
 import Head from "next/head";
 
 import Container from "react-bootstrap/Container";
@@ -6,10 +6,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 interface LandingLayoutProps {
-  children: ReactElement;
+  children: ReactNode;
 }
 
-function LandingLayout({ children }: LandingLayoutProps): ReactElement {
+function LandingLayout({ children }: LandingLayoutProps) {
   return (
     <>
       <Head>
