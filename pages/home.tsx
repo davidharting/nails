@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 
 import Layout from "~/layouts/App";
 
-function Home() {
+function Home(): React.ReactElement {
   return (
     <Layout title="Home">
       <p>

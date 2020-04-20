@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  hygiene:
+  build-lint-and-test:
     executor:
       name: node/default
     steps:
@@ -16,6 +16,6 @@ jobs:
             - run: yarn build
 
 workflows:
-  hygiene:
+  build:
     jobs:
-      - hygiene
+      - build-lint-and-test

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
 import prisma, { ListHelper } from "~/prisma";
 
@@ -7,7 +7,7 @@ import ShowList from "~/views/list/show";
 
 // TODO: Lists should really have a name
 
-function NotFound() {
+function NotFound(): ReactElement {
   return (
     <Layout title="List Not Found">
       <p>Sorry, the list you are looking for does not exist.</p>
@@ -15,7 +15,7 @@ function NotFound() {
   );
 }
 
-function List({ list }) {
+function List({ list }): ReactElement {
   if (!list) {
     return <NotFound />;
   }

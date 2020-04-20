@@ -4,10 +4,13 @@ import Head from "next/head";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
 
-function AppLayout({ children, title }) {
+interface AppLayoutProps {
+  children: React.ReactNode;
+  title: string;
+}
+
+function AppLayout({ children, title }: AppLayoutProps): React.ReactElement {
   return (
     <>
       <Head>
@@ -24,7 +27,7 @@ function AppLayout({ children, title }) {
       </Navbar>
       <Container fluid="sm">
         {typeof title === "string" && <h2>{title}</h2>}
-        {typeof title === "object" && { title }}
+        {/* {typeof title === "object" && { title }} */}
         {children}
       </Container>
     </>
