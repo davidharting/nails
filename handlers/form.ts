@@ -4,12 +4,12 @@
 // But that seems somewhat non-standard
 import { NextApiRequest, NextApiResponse } from "next";
 
-function redirect(res: NextApiResponse, to: string) {
+function redirect(res: NextApiResponse, to: string): void {
   res.writeHead(303, { Location: to });
   return res.end();
 }
 
-type HandleFormCallback = (error: any, to?: string) => void;
+type HandleFormCallback = (error: Error, to?: string) => void;
 type HandleFormResult = void | HandleFormCallback;
 
 function handleForm(
@@ -23,7 +23,7 @@ function handleForm(
       return redirect(res, requesterUrl);
     }
 
-    return (errors: any, to: string) => {
+    return (errors: Error, to: string): void => {
       const Location = errors || !to ? requesterUrl : to;
       res.writeHead(301, { Location });
       return res.end();
