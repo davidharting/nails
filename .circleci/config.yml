@@ -34,6 +34,12 @@ jobs:
             - run: yarn install
             - run: yarn cypress verify
             - run: yarn build
+            - run: 
+                name: Wait for DB
+                command: dockerize -wait tcp://localhost:5432 -timeout 1m
+            - run:
+                name: Migrate DB
+                command: yarn prisma:migrate:up
             - run:
                 name: Start webserver
                 command: yarn start
