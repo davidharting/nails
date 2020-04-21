@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "e2e": "cypress open",
-    "e23:ci": "echo \"Coming soon!\"",
+    "e2e:dev": "cypress open",
+    "e2e:run": "cypress run",
     "format:check": "prettier --check .",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./",
     "prisma:migrate:gen": "prisma migrate save --name init --experimental",
@@ -14,6 +14,7 @@
     "prisma:client:gen": "prisma generate",
     "prisma:refresh": "npm run prisma:migrate:gen && npm run prisma:migrate:up && npm run prisma:client:gen",
     "start": "next start",
+    "start:background": "next start & wait-on http://localhost:3000",
     "test": "jest",
     "test:ci": "jest --ci"
   },
@@ -47,6 +48,7 @@
     "eslint-plugin-react": "^7.19.0",
     "jest": "^25.3.0",
     "prettier": "^2.0.4",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "wait-on": "^4.0.2"
   }
 }

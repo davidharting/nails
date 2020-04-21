@@ -15,7 +15,31 @@ jobs:
             - run: yarn test:ci
             - run: yarn build
 
+  e2e-test:
+    docker:
+      - image: circleci/node:lts
+        environment:
+          DATABASE_URL: postgresql://frodo:friend@localhost:5432/nails_test?schema=public
+          
+      - image: circleci/postgres:9.5-alpine
+        environment:
+          POSTGRES_USER: frodo
+          POSTGRES_DB: nails_test
+          POSTGRES_PASSWORD: friend
+
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: yarn install
+            - run: yarn build
+            - run: yarn start:background
+            - run: yarn e2e:run
+          
 workflows:
   build:
     jobs:
       - build-lint-and-test
+  e2e:
+    jobs:
+      - e2e-test
