@@ -31,19 +31,12 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run:
-                name: Install dockerize
-                command: |
-                  apk add --no-cache openssl && \
-                  DOCKERIZE_VERSION=v0.6.1 wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-                  && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-                  && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
             - run: yarn install
             - run: yarn cypress verify
             - run: yarn build
             - run: 
                 name: Wait for DB
-                command: dockerize -wait tcp://localhost:5432 -timeout 1m
+                command: yarn wait-on tcp:5432
             - run:
                 name: Migrate DB
                 command: yarn prisma:migrate:up
