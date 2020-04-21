@@ -1,16 +1,19 @@
 module.exports = {
   extends: [
     "eslint:recommended",
-    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
+    "plugin:react/recommended",
+    "plugin:cypress/recommended",
     "plugin:prettier/recommended",
   ],
+  // Can I get rid of these since I am extending above?
   plugins: ["react", "@typescript-eslint", "prettier"],
   env: {
     browser: true,
     jasmine: true,
     jest: true,
+    node: true,
   },
   rules: {
     // Since we are using types for all props this is redundant
