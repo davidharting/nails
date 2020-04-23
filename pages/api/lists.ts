@@ -12,7 +12,7 @@ import handleForm from "~/handlers/form";
  * Callback may end up being the way to go I suppose :/
  */
 
-async function handle(req, res) {
+async function handle(req, res): Promise<void> {
   const done = handleForm(req, res);
   const list = await prisma.list.create({ data: {} });
   if (done) {

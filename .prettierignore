@@ -1,0 +1,4 @@
+.circleci
+.next
+node_modules
+prisma/migrations

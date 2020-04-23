@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 
 import Layout from "~/layouts/Landing";
 
-function Home() {
+function Index(): React.ReactElement {
   return (
     <Layout>
       <h1 className="text-center">Nails 💅</h1>
@@ -18,4 +18,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Index;

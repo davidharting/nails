@@ -11,12 +11,15 @@ function TaskForm({ listId }: TaskFormProps) {
   return (
     <Form action="/api/tasks" method="post">
       <Form.Control type="hidden" name="listId" value={listId} />
-      <Form.Control
-        type="text"
-        name="description"
-        required
-        placeholder="Your next task"
-      />
+      <Form.Group controlId="taskDescription">
+        <Form.Label>Task description</Form.Label>
+        <Form.Control
+          type="text"
+          name="description"
+          required
+          placeholder="Your next task"
+        />
+      </Form.Group>
       <Button type="submit" variant="primary">
         Add new task
       </Button>
