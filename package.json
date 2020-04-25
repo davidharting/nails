@@ -5,11 +5,12 @@
   "scripts": {
     "build": "run-p build:web build:workers",
     "build:web": "next build",
-    "build:workers": "yarn babel tasks -x .ts --out-dir .dist --delete-dir-on-start --source-maps",
-    "dev": "run-p dev:next dev:redis",
-    "dev:next": "next dev",
+    "build:work": "yarn babel tasks -x .ts --out-dir .build/tasks --delete-dir-on-start --source-maps",
+    "build:work:watch": "yarn babel tasks -x .ts -w --out-dir .build/tasks --delete-dir-on-start --source-maps",
+    "dev": "run-p dev:redis dev:web dev:work",
     "dev:redis": "docker run -p 6379:6379 redis",
-    "dev:workers": "",
+    "dev:web": "next dev",
+    "dev:work": "run-p build:work:watch start:work:watch",
     "prisma:client:gen": "prisma generate",
     "e2e:dev": "cypress open",
     "e2e:run": "cypress run",
@@ -19,9 +20,10 @@
     "prisma:migrate:up": "prisma migrate up --experimental",
     "prisma:refresh": "npm run prisma:migrate:gen && npm run prisma:migrate:up && npm run prisma:client:gen",
     "start": "next start",
+    "start:work": "node .build/tasks/work.js",
+    "start:work:watch": "wait-on .build/tasks/work.js && wait-on tcp:6379 && nodemon ./.build/tasks/work.js",
     "test": "jest",
-    "test:ci": "jest --ci",
-    "wait": "wait-on http://localhost:3000"
+    "test:ci": "jest --ci"
   },
   "dependencies": {
     "@prisma/client": "^2.0.0-beta.2",
@@ -56,8 +58,10 @@
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-react": "^7.19.0",
     "jest": "^25.3.0",
+    "nodemon": "^2.0.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
+    "ts-node": "^8.9.0",
     "typescript": "^3.8.3",
     "wait-on": "^4.0.2"
   }

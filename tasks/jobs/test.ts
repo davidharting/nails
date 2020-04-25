@@ -11,6 +11,7 @@ class TestJob extends Job<TestJobParams> {
   }
 
   process(job: Queue.Job<TestJobParams>): Promise<any> {
+    console.log("Processing job", job.id);
     console.log(job.data.greeting);
     return Promise.resolve(true);
   }

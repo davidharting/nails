@@ -17,7 +17,7 @@ async function handle(
   const done = handleForm(req, res);
   const { description, listId } = req.body;
   const list = await prisma.list.findOne({ where: { id: parseInt(listId) } });
-  await prisma.task.create({
+  const task = await prisma.task.create({
     data: {
       completedAt: null,
       description,

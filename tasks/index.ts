@@ -11,11 +11,11 @@ import TestJob from "./jobs/test";
 const testJob = new TestJob();
 export const addTestJob = testJob.doLater;
 
-function startWorkers() {
+export function startWorkers() {
   testJob.work();
 }
 
 // For now just starting workers in the web server
 // This way I can use the next.js build toolchain for everything
 // This is not ideal but fine for now as long as jobs stay fast?
-startWorkers();
+// startWorkers();
