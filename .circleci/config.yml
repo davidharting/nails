@@ -7,13 +7,11 @@ jobs:
       name: node/default
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: yarn install
-            - run: yarn format:check
-            - run: yarn lint
-            - run: yarn test:ci
-            - run: yarn build
+      - run: yarn install
+      - run: yarn format:check
+      - run: yarn lint
+      - run: yarn test:ci
+      - run: yarn build
 
   e2e-test:
     docker:
@@ -29,27 +27,25 @@ jobs:
 
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: yarn install
-            - run: yarn cypress verify
-            - run: yarn build
-            - run: 
-                name: Wait for DB
-                command: yarn wait-on tcp:5432
-            - run:
-                name: Migrate DB
-                command: yarn prisma:migrate:up
-            - run:
-                name: Start webserver
-                command: yarn start
-                background: true
-            - run:
-                name: Wait for webserver
-                command: yarn wait-on http://localhost:3000
-            - run:
-                name: E2E Cypress tests
-                command: yarn e2e:run
+      - run: yarn install
+      - run: yarn cypress verify
+      - run: yarn build
+      - run: 
+          name: Wait for DB
+          command: yarn wait-on tcp:5432
+      - run:
+          name: Migrate DB
+          command: yarn prisma:migrate:up
+      - run:
+          name: Start webserver
+          command: yarn start
+          background: true
+      - run:
+          name: Wait for webserver
+          command: yarn wait-on http://localhost:3000
+      - run:
+          name: E2E Cypress tests
+          command: yarn e2e:run
           
 workflows:
   build:
