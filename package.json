@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "run-p build:web build:workers",
+    "build": "run-p build:web build:work",
     "build:web": "next build",
     "build:work": "yarn babel tasks -x .ts --out-dir .build/tasks --delete-dir-on-start --source-maps",
     "build:work:watch": "yarn babel tasks -x .ts -w --out-dir .build/tasks --delete-dir-on-start --source-maps",
