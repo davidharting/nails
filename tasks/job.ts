@@ -10,7 +10,7 @@ import Redis from "ioredis";
 
 // Share a single redis client among all queues
 // https://github.com/OptimalBits/bull/blob/develop/PATTERNS.md#reusing-redis-connections
-var { REDIS_URL } = process.env;
+const { REDIS_URL } = process.env;
 const client = new Redis(REDIS_URL);
 const subscriber = new Redis(REDIS_URL);
 const opts: Bull.QueueOptions = {
