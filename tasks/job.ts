@@ -1,9 +1,6 @@
 import Bull from "bull";
 import Redis from "ioredis";
 
-// TODO: I want a setup where the class that inhereits from job
-// can define the type of the params
-
 // TODO: I could make jobs be handled syncrhonously in dev
 // by totally bypassing the queue
 // When you `doLater()`, if in sync mode, then call `this.process` directly
@@ -40,18 +37,12 @@ abstract class Job<T> {
       console.log("Unable to establish connection to redis for queue ", name);
       console.error(err);
     }
-
-    // I think it is bad to start processing
-    // We want to explicitly do this when booting up our worker
-    // this.queue.process(this.process);
   }
 
   /**
    * Adds an item to the queue
    */
   doLater = (params: T): Promise<Job<T>> => {
-    // TODO: Probably want to try-catch inside of this and just return an error?
-    // That way the caller can ignore this if they want or handle errors if they want
     return this.queue.add(params).catch((err) => {
       console.log("Unable to add item to queue", params);
       console.error(err);
@@ -75,7 +66,7 @@ abstract class Job<T> {
    * Specific jobs must implement this function in order to work a job.
    * This is the actual meat of the task - what does the worker do?
    */
-  abstract async process(job: Bull.Job<T>): Promise<Bull.Job<T>>;
+  abstract async process(job: Bull.Job<T>);
 }
 
 export default Job;
