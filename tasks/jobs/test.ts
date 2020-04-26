@@ -10,7 +10,7 @@ class TestJob extends Job<TestJobParams> {
     super("test");
   }
 
-  process(job: Queue.Job<TestJobParams>): Promise<any> {
+  process(job: Queue.Job<TestJobParams>): Promise<boolean> {
     console.log("Processing job", job.id);
     console.log(job.data.greeting);
     return Promise.resolve(true);
