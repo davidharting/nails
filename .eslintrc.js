@@ -14,6 +14,7 @@ module.exports = {
     jasmine: true,
     jest: true,
     node: true,
+    es6: true,
   },
   rules: {
     // Since we are using types for all props this is redundant

@@ -19,7 +19,7 @@ cypress/videos
 /out/
 
 # production
-/build
+/.build
 
 # misc
 .DS_Store
@@ -31,4 +31,3 @@ yarn-error.log*
 
 # local env files
 .env
-prisma/.env
