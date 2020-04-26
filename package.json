@@ -19,7 +19,7 @@
     "prisma:migrate:gen": "prisma migrate save --name init --experimental",
     "prisma:migrate:up": "prisma migrate up --experimental",
     "prisma:refresh": "npm run prisma:migrate:gen && npm run prisma:migrate:up && npm run prisma:client:gen",
-    "start": "next start",
+    "start:web": "next start",
     "start:work": "node .build/tasks/work.js",
     "start:work:watch": "wait-on .build/tasks/work.js && wait-on tcp:6379 && nodemon ./.build/tasks/work.js",
     "test": "jest",
