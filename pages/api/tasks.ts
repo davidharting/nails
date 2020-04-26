@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import prisma, { ListHelper } from "~/prisma";
 import handleForm from "~/handlers/form";
 
-import { addTestJob } from "~/tasks";
+import { addExampleJob } from "~/tasks";
 
 // The more I think about it, the more I want to pass my function behavior into the handleForm
 // "middleware" so that it can catch _all_ errors
@@ -26,7 +26,7 @@ async function handle(
   });
 
   if (done) {
-    await addTestJob({ greeting: task.description });
+    await addExampleJob({ greeting: task.description });
     return done(null, ListHelper.path(list));
   }
 }

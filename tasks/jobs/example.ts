@@ -5,7 +5,7 @@ interface TestJobParams {
   greeting: string;
 }
 
-class TestJob extends Job<TestJobParams> {
+class ExampleJob extends Job<TestJobParams> {
   constructor() {
     super("test");
   }
@@ -17,4 +17,4 @@ class TestJob extends Job<TestJobParams> {
   }
 }
 
-export default TestJob;
+export default ExampleJob;
