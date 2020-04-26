@@ -18,12 +18,15 @@ jobs:
       - image: cypress/base:12.16.1
         environment:
           DATABASE_URL: postgresql://frodo:friend@localhost:5432/nails_test?schema=public
+          REDIS_URL: redis://127.0.0.1:6379
           
       - image: circleci/postgres:9.5-alpine
         environment:
           POSTGRES_USER: frodo
           POSTGRES_DB: nails_test
           POSTGRES_PASSWORD: friend
+
+      - image: circleci/redis:5.0.7-alpine
 
     steps:
       - checkout
@@ -37,8 +40,11 @@ jobs:
           name: Migrate DB
           command: yarn prisma:migrate:up
       - run:
+          name: Wait for Redis
+          command: yarn wait-on tcp:6379
+      - run:
           name: Start webserver
-          command: yarn start
+          command: yarn start:web
           background: true
       - run:
           name: Wait for webserver
